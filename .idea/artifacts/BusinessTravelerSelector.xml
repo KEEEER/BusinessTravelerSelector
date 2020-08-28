@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="BusinessTravelerSelector">
+    <output-path>$PROJECT_DIR$/out/artifacts/BusinessTravelerSelector</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="sample.Main" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="nativeBundle" value="all" />
+        <option name="title" value="BusinessTravelerSelector" />
+        <option name="vendor" value="keer" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="BusinessTravelerSelector.jar">
+        <element id="module-output" name="BusinessTravelerSelector" />
+      </element>
+    </root>
+  </artifact>
+</component>
