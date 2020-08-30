@@ -38,9 +38,8 @@ public class StaffFileLoader implements FileLoader {
             Iterator<Cell> cellIterator = row.cellIterator();
             while (cellIterator.hasNext()) {
                 Cell cell = cellIterator.next();
-                System.out.print(cell.toString() + " ");
+                this.staffs.add(new Staff(cell.toString()));
             }
-            System.out.println();
         }
 
     }

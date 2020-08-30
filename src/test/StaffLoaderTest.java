@@ -20,7 +20,7 @@ public class StaffLoaderTest {
         loader.loadData();
 
         List<Staff> staffs = loader.getStaffs();
-        assertEquals(staffs.size(), 10);
+        assertEquals(staffs.size(), 11);
 
     }
 }
