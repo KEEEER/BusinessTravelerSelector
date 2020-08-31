@@ -7,19 +7,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accompany.xlsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/keer/domain/AccompanyStaff.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/keer/domain/StaffPair.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/keer/domain/loader/AccompanyFileLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/AccompanyFileLoaderTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/META-INF/BusinessTravelerSelector.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/Controller.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/domain/Staff.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/domain/Staff.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/domain/StaffFileLoader.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/domain/StaffFileLoader.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/domain/FileLoader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/domain/StaffFileLoader.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/sample.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/test/StaffLoaderTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/test/StaffLoaderTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/keer/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/keer/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/keer/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/keer/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/keer/domain/Staff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/keer/domain/Staff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/keer/domain/StaffFileLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/keer/domain/StaffFileLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/keer/domain/FileLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/keer/domain/loader/FileLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/keer/domain/StaffFileLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/keer/domain/loader/StaffFileLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/keer/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/keer/sample.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/StaffLoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/StaffLoaderTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/travel.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel.xlsx" afterDir="false" />
@@ -73,8 +76,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
+        <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -116,6 +120,9 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="create.test.in.the.same.root" value="true" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Libraries" />
@@ -125,6 +132,12 @@
     <property name="settings.editor.selected.configurable" value="preferences.updates" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="keer.domain.loader" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="keer.domain" />
     </key>
@@ -177,15 +190,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
+    <configuration name="AccompanyFileLoaderTest.getAccompanyStaffs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="BusinessTravelerSelector" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test" />
+      <option name="MAIN_CLASS_NAME" value="test.AccompanyFileLoaderTest" />
+      <option name="METHOD_NAME" value="getAccompanyStaffs" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -243,11 +263,12 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AccompanyFileLoaderTest.getAccompanyStaffs" />
         <item itemvalue="JUnit.StaffLoaderTest.StaffLoadStaffTest" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -264,11 +285,12 @@
       <workItem from="1598594920697" duration="8841000" />
       <workItem from="1598684883298" duration="4015000" />
       <workItem from="1598725064760" duration="17027000" />
+      <workItem from="1598863893398" duration="8978000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
@@ -276,11 +298,11 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="689" y="182" key="#com.intellij.ide.util.MemberChooser" timestamp="1598774261221">
-      <screen x="0" y="0" width="1856" height="1080" />
+    <state x="690" y="182" key="#com.intellij.ide.util.MemberChooser" timestamp="1598865576437">
+      <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="689" y="182" key="#com.intellij.ide.util.MemberChooser/0.0.1856.1080/-1920.0.1536.864@0.0.1856.1080" timestamp="1598774261221" />
-    <state x="690" y="182" key="#com.intellij.ide.util.MemberChooser/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598605590182" />
+    <state x="690" y="182" key="#com.intellij.ide.util.MemberChooser/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598865576437" />
     <state x="596" y="264" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1598605561433">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -297,38 +319,38 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="659" y="221" key="FileChooserDialogImpl/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598608952644" />
-    <state width="1813" height="295" key="GridCell.Tab.0.bottom" timestamp="1598781414095">
-      <screen x="0" y="0" width="1856" height="1080" />
+    <state width="1803" height="281" key="GridCell.Tab.0.bottom" timestamp="1598872953766">
+      <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state width="1801" height="295" key="GridCell.Tab.0.bottom/0.0.1844.1080/-1920.0.1536.864@0.0.1844.1080" timestamp="1598734139353" />
     <state width="1806" height="295" key="GridCell.Tab.0.bottom/0.0.1849.1080/-1920.0.1536.864@0.0.1849.1080" timestamp="1598732994211" />
     <state width="1813" height="295" key="GridCell.Tab.0.bottom/0.0.1856.1080/-1920.0.1536.864@0.0.1856.1080" timestamp="1598781414095" />
     <state width="1815" height="295" key="GridCell.Tab.0.bottom/0.0.1858.1080/-1920.0.1536.864@0.0.1858.1080" timestamp="1598731591350" />
-    <state width="1803" height="281" key="GridCell.Tab.0.bottom/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598608963223" />
-    <state width="1813" height="295" key="GridCell.Tab.0.center" timestamp="1598781414094">
-      <screen x="0" y="0" width="1856" height="1080" />
+    <state width="1803" height="281" key="GridCell.Tab.0.bottom/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598872953766" />
+    <state width="1803" height="281" key="GridCell.Tab.0.center" timestamp="1598872953766">
+      <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state width="1801" height="295" key="GridCell.Tab.0.center/0.0.1844.1080/-1920.0.1536.864@0.0.1844.1080" timestamp="1598734139353" />
     <state width="1806" height="295" key="GridCell.Tab.0.center/0.0.1849.1080/-1920.0.1536.864@0.0.1849.1080" timestamp="1598732994211" />
     <state width="1813" height="295" key="GridCell.Tab.0.center/0.0.1856.1080/-1920.0.1536.864@0.0.1856.1080" timestamp="1598781414094" />
     <state width="1815" height="295" key="GridCell.Tab.0.center/0.0.1858.1080/-1920.0.1536.864@0.0.1858.1080" timestamp="1598731591350" />
-    <state width="1803" height="281" key="GridCell.Tab.0.center/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598608963222" />
-    <state width="1813" height="295" key="GridCell.Tab.0.left" timestamp="1598781414094">
-      <screen x="0" y="0" width="1856" height="1080" />
+    <state width="1803" height="281" key="GridCell.Tab.0.center/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598872953766" />
+    <state width="1803" height="281" key="GridCell.Tab.0.left" timestamp="1598872953766">
+      <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state width="1801" height="295" key="GridCell.Tab.0.left/0.0.1844.1080/-1920.0.1536.864@0.0.1844.1080" timestamp="1598734139353" />
     <state width="1806" height="295" key="GridCell.Tab.0.left/0.0.1849.1080/-1920.0.1536.864@0.0.1849.1080" timestamp="1598732994211" />
     <state width="1813" height="295" key="GridCell.Tab.0.left/0.0.1856.1080/-1920.0.1536.864@0.0.1856.1080" timestamp="1598781414094" />
     <state width="1815" height="295" key="GridCell.Tab.0.left/0.0.1858.1080/-1920.0.1536.864@0.0.1858.1080" timestamp="1598731591350" />
-    <state width="1803" height="281" key="GridCell.Tab.0.left/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598608963222" />
-    <state width="1813" height="295" key="GridCell.Tab.0.right" timestamp="1598781414094">
-      <screen x="0" y="0" width="1856" height="1080" />
+    <state width="1803" height="281" key="GridCell.Tab.0.left/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598872953766" />
+    <state width="1803" height="281" key="GridCell.Tab.0.right" timestamp="1598872953766">
+      <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state width="1801" height="295" key="GridCell.Tab.0.right/0.0.1844.1080/-1920.0.1536.864@0.0.1844.1080" timestamp="1598734139353" />
     <state width="1806" height="295" key="GridCell.Tab.0.right/0.0.1849.1080/-1920.0.1536.864@0.0.1849.1080" timestamp="1598732994211" />
     <state width="1813" height="295" key="GridCell.Tab.0.right/0.0.1856.1080/-1920.0.1536.864@0.0.1856.1080" timestamp="1598781414094" />
     <state width="1815" height="295" key="GridCell.Tab.0.right/0.0.1858.1080/-1920.0.1536.864@0.0.1858.1080" timestamp="1598731591350" />
-    <state width="1803" height="281" key="GridCell.Tab.0.right/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598608963222" />
+    <state width="1803" height="281" key="GridCell.Tab.0.right/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598872953766" />
     <state width="1813" height="364" key="GridCell.Tab.1.bottom" timestamp="1598775411472">
       <screen x="0" y="0" width="1856" height="1080" />
     </state>
@@ -357,6 +379,10 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="555" y="413" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598603305640" />
+    <state x="686" y="171" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1598866940249">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="686" y="171" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598866940249" />
     <state x="125" y="216" key="new project wizard" timestamp="1598775344474">
       <screen x="0" y="0" width="1856" height="1080" />
     </state>
@@ -366,9 +392,9 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="611" y="98" key="refactoring.ChangeSignatureDialog/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598590525244" />
-    <state x="508" y="45" width="840" height="1034" key="search.everywhere.popup" timestamp="1598603576216">
+    <state x="508" y="45" width="840" height="1034" key="search.everywhere.popup" timestamp="1598866681361">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="508" y="45" width="840" height="1034" key="search.everywhere.popup/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598603576216" />
+    <state x="508" y="45" width="840" height="1034" key="search.everywhere.popup/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598866681361" />
   </component>
 </project>
