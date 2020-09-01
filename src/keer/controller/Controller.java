@@ -1,6 +1,6 @@
-package keer;
+package keer.controller;
 
-import javafx.collections.ObservableList;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -13,11 +13,13 @@ import javafx.stage.Stage;
 
 import javafx.beans.value.ChangeListener;
 
-import javafx.scene.input.MouseEvent;
-import keer.domain.AccompanyStaff;
-import keer.domain.loader.AccompanyFileLoader;
+import keer.domain.AccompanyStaffSet;
+import keer.repository.AccompanyFileLoader;
 import keer.domain.Staff;
-import keer.domain.loader.StaffFileLoader;
+import keer.repository.StaffFileLoader;
+
+import javafx.scene.input.MouseEvent;
+import org.apache.poi.ss.formula.functions.Column;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,11 +30,11 @@ public class Controller {
     public TabPane mainTabPane;
     public Button confirmBtn;
     public TextField totalTimeInput;
-    public TextField personPerTimeInput;
     public Tab togetherRatioTab;
     public AnchorPane ratioAnchor;
     public Button addAccompanyBtn;
-    public TableView<ObservableList<String>> accompanyTable;
+    public TableView<AccompanyStaffSet> accompanyTable;
+    public TextField ratioInput;
 
     private List<ComboBox<String>> accompanyComboBoxes;
     public ComboBox<String> accompanyA;
@@ -40,6 +42,9 @@ public class Controller {
 
     private Stage stage;
     private Parent root;
+
+    private StaffFileLoader staffFileLoader = new StaffFileLoader();
+    private AccompanyFileLoader accompanyFileLoader = new AccompanyFileLoader();
 
     public Controller(){
         accompanyComboBoxes = new ArrayList<>();
@@ -50,11 +55,8 @@ public class Controller {
         this.stage = stage;
         this.root = root;
 
-        StaffFileLoader staffFileLoader = new StaffFileLoader();
         List<Staff> staffs = loadStaffs(staffFileLoader);
-
-        AccompanyFileLoader accompanyFileLoader = new AccompanyFileLoader();
-        List<AccompanyStaff> accompanyStaffs = loadAccompanyStaffs(accompanyFileLoader);
+        List<AccompanyStaffSet> accompanyStaffSets = loadAccompanyStaffs(accompanyFileLoader);
         List<String> accompanyTitle = accompanyFileLoader.getTitle();
 
         accompanyComboBoxes.add(accompanyA);
@@ -62,23 +64,29 @@ public class Controller {
         fillAccompanyComboBoxes(staffFileLoader.getStaffNames(staffs));
 
         makeTableViewColumn(accompanyTitle);
-        makeTableViewItems(accompanyFileLoader.getAccompanyStaffNames());
+        makeTableViewRows(accompanyStaffSets);
 
         setPresentation();
         setSizeChangedPresentation();
     }
 
-
     private void makeTableViewColumn(List<String> accompanyTitle) {
-        for (String title : accompanyTitle) {
-            TableColumn<ObservableList<String>, String> column = new TableColumn<>(title);
+        for (int i = 0; i < accompanyTitle.size(); i++) {
+            TableColumn<AccompanyStaffSet, String> column = new TableColumn<>(accompanyTitle.get(i));
+            makeColumnRelation(column, i);
             accompanyTable.getColumns().add(column);
         }
     }
 
-    private void makeTableViewItems(List<List<String>> accompanyStaffNames) {
-        for (List<String> stringList : accompanyStaffNames){
-            accompanyTable.getItems().add((ObservableList<String>) stringList);
+    private void makeColumnRelation(TableColumn<AccompanyStaffSet, String> column, final int finalIndex) {
+        column.setCellValueFactory(p -> {
+            return new ReadOnlyObjectWrapper<>(p.getValue().getAccompanyStaffs().get(finalIndex));
+        });
+    }
+
+    private void makeTableViewRows(List<AccompanyStaffSet> accompanyStaffSets) {
+        for(AccompanyStaffSet accompanyStaffSet : accompanyStaffSets){
+            accompanyTable.getItems().add(new AccompanyStaffSet(accompanyStaffSet.getAccompanyStaffs()));
         }
     }
 
@@ -104,13 +112,8 @@ public class Controller {
     public void makeComponentFitSceneSize(){
         double height = this.stage.getScene().getHeight() ;
         double width = this.stage.getScene().getWidth() ;
-
         accompanyTable.setPrefWidth(ratioAnchor.getWidth() - 100);
         mainTabPane.setPrefSize(width-10, height-10);
-    }
-
-    public void determineTravel(MouseEvent mouseEvent) {
-        System.out.println("今年共出差次數 :" + totalTimeInput.getText());
     }
 
     private List<Staff> loadStaffs(StaffFileLoader staffFileLoader) throws IOException {
@@ -118,17 +121,42 @@ public class Controller {
         staffFileLoader.loadData();
         return staffFileLoader.getStaffs();
     }
-    private List<AccompanyStaff> loadAccompanyStaffs(AccompanyFileLoader accompanyFileLoader) throws IOException {
+
+    private List<AccompanyStaffSet> loadAccompanyStaffs(AccompanyFileLoader accompanyFileLoader) throws IOException {
         accompanyFileLoader.setFilePath("accompany.xlsx");
         accompanyFileLoader.loadData();
-        return accompanyFileLoader.getAccompanyStaffs();
+        return accompanyFileLoader.getAccompanyStaffSets();
     }
 
     public void addAccompany(MouseEvent mouseEvent) {
-        List<String> accompanyStaffs = new ArrayList<>();
+        if(!isStaffMatchDuplicated() && isRatioCorrect()){
+            AccompanyStaffSet accompanyStaffSet = new AccompanyStaffSet();
+            accompanyTable.getItems().add()
+        }
 
     }
 
+    private boolean isRatioCorrect() {
+        if(!ratioInput.getText().equals("")) {
+            double ratioData = Double.parseDouble(ratioInput.getText());
+            return ratioData <= 100.0 && ratioData > 0;
+        }
+        return false;
 
+    }
 
+    private boolean isStaffMatchDuplicated() {
+        if(accompanyA.getValue().equals(accompanyB.getValue())) return false;
+        for(AccompanyStaffSet accompanyStaffSet : accompanyTable.getItems()){
+            for(ComboBox<String> comboBoxSelectedStaff : accompanyComboBoxes)
+                for(String staffName : accompanyStaffSet.getAccompanyStaffs()){
+                    if(comboBoxSelectedStaff.getValue().equals(staffName)) return true;
+                }
+        }
+        return false;
+    }
+
+    public void determineTravel(MouseEvent mouseEvent) {
+        System.out.println("今年共出差次數 :" + totalTimeInput.getText());
+    }
 }

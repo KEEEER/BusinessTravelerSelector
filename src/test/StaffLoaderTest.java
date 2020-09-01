@@ -1,8 +1,7 @@
 package test;
 
-import keer.domain.loader.FileLoader;
 import keer.domain.Staff;
-import keer.domain.loader.StaffFileLoader;
+import keer.repository.StaffFileLoader;
 import org.junit.Test;
 
 import java.io.IOException;

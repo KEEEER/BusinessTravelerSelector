@@ -5,7 +5,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<TabPane fx:id="mainTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="keer.Controller">
+<TabPane fx:id="mainTabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="keer.controller.Controller">
    <tabs>
        <Tab fx:id="travelTab" text="出差設定">
           <content>
@@ -33,7 +33,7 @@
                         <Font size="20.0" />
                      </font>
                   </Text>
-                  <TextField layoutX="411.0" layoutY="285.0" prefHeight="29.0" prefWidth="61.0" />
+                  <TextField fx:id="ratioInput" layoutX="411.0" layoutY="285.0" prefHeight="29.0" prefWidth="61.0" />
                   <Text layoutX="472.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="\%" wrappingWidth="49.0">
                      <font>
                         <Font size="20.0" />

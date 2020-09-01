@@ -1,9 +1,6 @@
-package keer.domain.loader;
+package keer.repository;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.util.List;
 
 public interface FileLoader {
     public void setFilePath(String filePath);

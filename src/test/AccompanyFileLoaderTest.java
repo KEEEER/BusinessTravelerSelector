@@ -1,6 +1,6 @@
 package test;
 
-import keer.domain.loader.AccompanyFileLoader;
+import keer.repository.AccompanyFileLoader;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -15,6 +15,6 @@ public class AccompanyFileLoaderTest {
         AccompanyFileLoader accompanyFileLoader = new AccompanyFileLoader();
         accompanyFileLoader.setFilePath("accompany.xlsx");
         accompanyFileLoader.loadData();
-        assertEquals(accompanyFileLoader.getAccompanyStaffs().size(), 11);
+        assertEquals(accompanyFileLoader.getAccompanyStaffSets().size(), 11);
     }
 }

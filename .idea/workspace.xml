@@ -7,25 +7,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/accompany.xlsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/keer/domain/AccompanyStaff.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/keer/domain/StaffPair.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/keer/domain/loader/AccompanyFileLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/AccompanyFileLoaderTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/domain/FileLoader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/domain/StaffFileLoader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/keer/sample.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/test/StaffLoaderTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/BusinessTravelerSelector/test/StaffLoaderTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/keer/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/keer/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/keer/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/keer/controller/Controller.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/keer/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/keer/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/keer/domain/FileLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/keer/domain/loader/FileLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/keer/domain/StaffFileLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/keer/domain/loader/StaffFileLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/keer/domain/AccompanyStaff.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/keer/domain/AccompanyStaffSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/keer/domain/StaffPair.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/keer/domain/loader/AccompanyFileLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/keer/repository/AccompanyFileLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/keer/domain/loader/FileLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/keer/repository/FileLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/keer/domain/loader/StaffFileLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/keer/repository/StaffFileLoader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/keer/sample.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/keer/sample.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/AccompanyFileLoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/AccompanyFileLoaderTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/StaffLoaderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/StaffLoaderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/travel.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/travel.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +166,7 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="keer.*" />
+          <option name="PATTERN" value="keer.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -285,7 +277,8 @@
       <workItem from="1598594920697" duration="8841000" />
       <workItem from="1598684883298" duration="4015000" />
       <workItem from="1598725064760" duration="17027000" />
-      <workItem from="1598863893398" duration="8978000" />
+      <workItem from="1598863893398" duration="9337000" />
+      <workItem from="1598924920433" duration="17438000" />
     </task>
     <servers />
   </component>
@@ -298,11 +291,11 @@
     <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="690" y="182" key="#com.intellij.ide.util.MemberChooser" timestamp="1598865576437">
+    <state x="690" y="182" key="#com.intellij.ide.util.MemberChooser" timestamp="1598929129777">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="689" y="182" key="#com.intellij.ide.util.MemberChooser/0.0.1856.1080/-1920.0.1536.864@0.0.1856.1080" timestamp="1598774261221" />
-    <state x="690" y="182" key="#com.intellij.ide.util.MemberChooser/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598865576437" />
+    <state x="690" y="182" key="#com.intellij.ide.util.MemberChooser/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598929129777" />
     <state x="596" y="264" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1598605561433">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -311,6 +304,14 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="596" y="282" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598594980428" />
+    <state x="252" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1598936277960">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="252" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598936277960" />
+    <state x="596" y="228" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1598935940364">
+      <screen x="0" y="0" width="1858" height="1080" />
+    </state>
+    <state x="596" y="228" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598935940364" />
     <state x="626" y="192" key="DetectedRootsChooserDialog" timestamp="1598608654131">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
@@ -319,38 +320,38 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="659" y="221" key="FileChooserDialogImpl/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598608952644" />
-    <state width="1803" height="281" key="GridCell.Tab.0.bottom" timestamp="1598872953766">
+    <state width="1803" height="248" key="GridCell.Tab.0.bottom" timestamp="1598943033585">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state width="1801" height="295" key="GridCell.Tab.0.bottom/0.0.1844.1080/-1920.0.1536.864@0.0.1844.1080" timestamp="1598734139353" />
     <state width="1806" height="295" key="GridCell.Tab.0.bottom/0.0.1849.1080/-1920.0.1536.864@0.0.1849.1080" timestamp="1598732994211" />
     <state width="1813" height="295" key="GridCell.Tab.0.bottom/0.0.1856.1080/-1920.0.1536.864@0.0.1856.1080" timestamp="1598781414095" />
     <state width="1815" height="295" key="GridCell.Tab.0.bottom/0.0.1858.1080/-1920.0.1536.864@0.0.1858.1080" timestamp="1598731591350" />
-    <state width="1803" height="281" key="GridCell.Tab.0.bottom/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598872953766" />
-    <state width="1803" height="281" key="GridCell.Tab.0.center" timestamp="1598872953766">
+    <state width="1803" height="248" key="GridCell.Tab.0.bottom/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598943033585" />
+    <state width="1803" height="248" key="GridCell.Tab.0.center" timestamp="1598943033585">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state width="1801" height="295" key="GridCell.Tab.0.center/0.0.1844.1080/-1920.0.1536.864@0.0.1844.1080" timestamp="1598734139353" />
     <state width="1806" height="295" key="GridCell.Tab.0.center/0.0.1849.1080/-1920.0.1536.864@0.0.1849.1080" timestamp="1598732994211" />
     <state width="1813" height="295" key="GridCell.Tab.0.center/0.0.1856.1080/-1920.0.1536.864@0.0.1856.1080" timestamp="1598781414094" />
     <state width="1815" height="295" key="GridCell.Tab.0.center/0.0.1858.1080/-1920.0.1536.864@0.0.1858.1080" timestamp="1598731591350" />
-    <state width="1803" height="281" key="GridCell.Tab.0.center/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598872953766" />
-    <state width="1803" height="281" key="GridCell.Tab.0.left" timestamp="1598872953766">
+    <state width="1803" height="248" key="GridCell.Tab.0.center/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598943033585" />
+    <state width="1803" height="248" key="GridCell.Tab.0.left" timestamp="1598943033585">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state width="1801" height="295" key="GridCell.Tab.0.left/0.0.1844.1080/-1920.0.1536.864@0.0.1844.1080" timestamp="1598734139353" />
     <state width="1806" height="295" key="GridCell.Tab.0.left/0.0.1849.1080/-1920.0.1536.864@0.0.1849.1080" timestamp="1598732994211" />
     <state width="1813" height="295" key="GridCell.Tab.0.left/0.0.1856.1080/-1920.0.1536.864@0.0.1856.1080" timestamp="1598781414094" />
     <state width="1815" height="295" key="GridCell.Tab.0.left/0.0.1858.1080/-1920.0.1536.864@0.0.1858.1080" timestamp="1598731591350" />
-    <state width="1803" height="281" key="GridCell.Tab.0.left/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598872953766" />
-    <state width="1803" height="281" key="GridCell.Tab.0.right" timestamp="1598872953766">
+    <state width="1803" height="248" key="GridCell.Tab.0.left/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598943033585" />
+    <state width="1803" height="248" key="GridCell.Tab.0.right" timestamp="1598943033585">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state width="1801" height="295" key="GridCell.Tab.0.right/0.0.1844.1080/-1920.0.1536.864@0.0.1844.1080" timestamp="1598734139353" />
     <state width="1806" height="295" key="GridCell.Tab.0.right/0.0.1849.1080/-1920.0.1536.864@0.0.1849.1080" timestamp="1598732994211" />
     <state width="1813" height="295" key="GridCell.Tab.0.right/0.0.1856.1080/-1920.0.1536.864@0.0.1856.1080" timestamp="1598781414094" />
     <state width="1815" height="295" key="GridCell.Tab.0.right/0.0.1858.1080/-1920.0.1536.864@0.0.1858.1080" timestamp="1598731591350" />
-    <state width="1803" height="281" key="GridCell.Tab.0.right/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598872953766" />
+    <state width="1803" height="248" key="GridCell.Tab.0.right/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598943033585" />
     <state width="1813" height="364" key="GridCell.Tab.1.bottom" timestamp="1598775411472">
       <screen x="0" y="0" width="1856" height="1080" />
     </state>
@@ -392,9 +393,9 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="611" y="98" key="refactoring.ChangeSignatureDialog/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598590525244" />
-    <state x="508" y="45" width="840" height="1034" key="search.everywhere.popup" timestamp="1598866681361">
+    <state x="508" y="45" width="840" height="1034" key="search.everywhere.popup" timestamp="1598938309861">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="508" y="45" width="840" height="1034" key="search.everywhere.popup/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598866681361" />
+    <state x="508" y="45" width="840" height="1034" key="search.everywhere.popup/0.0.1858.1080/-1920.0.1920.1040@0.0.1858.1080" timestamp="1598938309861" />
   </component>
 </project>

@@ -1,7 +1,6 @@
-package keer.domain.loader;
+package keer.repository;
 
-import keer.domain.AccompanyStaff;
-import keer.domain.Staff;
+import keer.domain.AccompanyStaffSet;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -9,18 +8,17 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 public class AccompanyFileLoader implements FileLoader {
-    private List<AccompanyStaff> accompanyStaffs;
+    private List<AccompanyStaffSet> accompanyStaffSets;
     private List<String> title;
     private String filePath;
     public AccompanyFileLoader(){
-        this.accompanyStaffs = new ArrayList<>();
+        this.accompanyStaffSets = new ArrayList<>();
     }
 
     @Override
@@ -31,7 +29,7 @@ public class AccompanyFileLoader implements FileLoader {
 
     @Override
     public void loadData() throws IOException {
-        this.accompanyStaffs = new ArrayList<>();
+        this.accompanyStaffSets = new ArrayList<>();
         this.title = new ArrayList<>();
         XSSFSheet firstSheet = readFile();
 
@@ -43,16 +41,12 @@ public class AccompanyFileLoader implements FileLoader {
                 Cell cell = cellIterator.next();
                 rowItems.add(cell.toString());
             }
-            AccompanyStaff accompanyStaff = new AccompanyStaff();
-            for(int i=0 ; i<rowItems.size() - 1 ; i++){
-                if (isTitle) title.add(rowItems.get(i));
-                else accompanyStaff.addStaff(rowItems.get(i));
+            AccompanyStaffSet accompanyStaffSet = new AccompanyStaffSet();
+            for (String rowItem : rowItems) {
+                if (isTitle) title.add(rowItem);
+                else accompanyStaffSet.addStaff(rowItem);
             }
-
-            if(isTitle) title.add(rowItems.get(rowItems.size()-1));
-            else accompanyStaff.setRatio(Double.parseDouble(rowItems.get(rowItems.size()-1)));
-
-            this.accompanyStaffs.add(accompanyStaff);
+            if(!isTitle) this.accompanyStaffSets.add(accompanyStaffSet);
             isTitle = false;
         }
     }
@@ -65,18 +59,11 @@ public class AccompanyFileLoader implements FileLoader {
 
     }
 
-    public List<AccompanyStaff> getAccompanyStaffs() {
-        return this.accompanyStaffs;
+    public List<AccompanyStaffSet> getAccompanyStaffSets() {
+        return this.accompanyStaffSets;
     }
     public List<String> getTitle(){
         return this.title;
     }
 
-    public List<List<String>> getAccompanyStaffNames(){
-        List<List<String>> staffNames = new ArrayList<>();
-        for(AccompanyStaff accompanyStaff : this.accompanyStaffs){
-            staffNames.add(accompanyStaff.getAccompanyStaffs());
-        }
-        return  staffNames;
-    }
 }
