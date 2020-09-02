@@ -41,6 +41,12 @@
                   </Text>
                   <Button fx:id="addAccompanyBtn" layoutX="498.0" layoutY="283.0" mnemonicParsing="false" onMouseClicked="#addAccompany" prefHeight="31.0" prefWidth="47.0" text="新增" />
                   <TableView fx:id="accompanyTable" layoutX="39.0" layoutY="27.0" prefHeight="235.0" prefWidth="509.0" />
+                  <Text fx:id="errorText" layoutX="38.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="511.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="deleteAccompanyBtn" layoutX="498.0" layoutY="319.0" mnemonicParsing="false" onMouseClicked="#deleteAccompany" prefHeight="31.0" prefWidth="47.0" text="刪除" />
                </children>
             </AnchorPane>
           </content>

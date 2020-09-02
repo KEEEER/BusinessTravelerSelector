@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
@@ -19,7 +20,6 @@ import keer.domain.Staff;
 import keer.repository.StaffFileLoader;
 
 import javafx.scene.input.MouseEvent;
-import org.apache.poi.ss.formula.functions.Column;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -35,6 +35,8 @@ public class Controller {
     public Button addAccompanyBtn;
     public TableView<AccompanyStaffSet> accompanyTable;
     public TextField ratioInput;
+    public Text errorText;
+    public Button deleteAccompanyBtn;
 
     private List<ComboBox<String>> accompanyComboBoxes;
     public ComboBox<String> accompanyA;
@@ -128,12 +130,21 @@ public class Controller {
         return accompanyFileLoader.getAccompanyStaffSets();
     }
 
-    public void addAccompany(MouseEvent mouseEvent) {
+    public void addAccompany() throws IOException {
+        System.out.println(!isStaffMatchDuplicated() + " " + isRatioCorrect());
         if(!isStaffMatchDuplicated() && isRatioCorrect()){
             AccompanyStaffSet accompanyStaffSet = new AccompanyStaffSet();
-            accompanyTable.getItems().add()
-        }
 
+            accompanyStaffSet.addStaff(accompanyA.getValue());
+            accompanyStaffSet.addStaff(accompanyB.getValue());
+            accompanyStaffSet.addStaff(ratioInput.getText());
+            accompanyTable.getItems().add(accompanyStaffSet);
+            this.accompanyFileLoader.addRow(accompanyStaffSet);
+            errorText.setText("");
+        }
+        else{
+            errorText.setText("輸入形式錯誤");
+        }
     }
 
     private boolean isRatioCorrect() {
@@ -146,17 +157,33 @@ public class Controller {
     }
 
     private boolean isStaffMatchDuplicated() {
-        if(accompanyA.getValue().equals(accompanyB.getValue())) return false;
+        if(accompanyA.getValue().equals(accompanyB.getValue())) return true;
         for(AccompanyStaffSet accompanyStaffSet : accompanyTable.getItems()){
-            for(ComboBox<String> comboBoxSelectedStaff : accompanyComboBoxes)
+            int sameItemNum = 0;
+            for(ComboBox<String> comboBoxSelectedStaff : accompanyComboBoxes){
                 for(String staffName : accompanyStaffSet.getAccompanyStaffs()){
-                    if(comboBoxSelectedStaff.getValue().equals(staffName)) return true;
+                    if(comboBoxSelectedStaff.getValue().equals(staffName)){
+
+                        sameItemNum += 1;
+                        break;
+                    }
                 }
+            }
+            if(sameItemNum == accompanyComboBoxes.size()) {
+                return true;
+            }
         }
         return false;
     }
 
     public void determineTravel(MouseEvent mouseEvent) {
         System.out.println("今年共出差次數 :" + totalTimeInput.getText());
+    }
+
+    public void deleteAccompany(MouseEvent mouseEvent) throws IOException {
+        AccompanyStaffSet selectedRow = accompanyTable.getFocusModel().getFocusedItem();
+        int selectIndex =  accompanyTable.getFocusModel().getFocusedIndex();
+        accompanyTable.getItems().remove(selectedRow);
+        this.accompanyFileLoader.removeRow(selectIndex + 1);
     }
 }
