@@ -1,2 +1,2 @@
 # BusinessTravelerSelector
-simple selector for my 
+simple selector for my cousin
