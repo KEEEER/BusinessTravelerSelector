@@ -68,7 +68,7 @@ public class Controller {
         makeTableViewColumn(accompanyTitle);
         makeTableViewRows(accompanyStaffSets);
 
-        setPresentation();
+        setInitWindowPresentation();
         setSizeChangedPresentation();
     }
 
@@ -104,7 +104,7 @@ public class Controller {
         stage.heightProperty().addListener(listener);
     }
 
-    private void setPresentation() {
+    private void setInitWindowPresentation() {
         Rectangle2D userScreenBounds = Screen.getPrimary().getBounds();
         System.out.println(userScreenBounds);
         stage.setScene(new Scene(root, userScreenBounds.getMaxX() / 2.0, userScreenBounds.getMaxY() / 2.0));

@@ -1,9 +1,14 @@
-package keer.domain;
+package keer.usecase;
+
+import keer.domain.AccompanyStaffSet;
+import keer.domain.Staff;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static java.lang.Integer.min;
 
 public class BusinessTravelSelector {
     private Map<String, Integer> staffAlreadyDistributedDays;
@@ -13,10 +18,11 @@ public class BusinessTravelSelector {
         staffAlreadyDistributedDays = new HashMap<>();
     }
 
-    public List<AccompanyStaffSet> choreography(List<Staff> staffs, List<AccompanyStaffSet> accompanyStaffSets, int totalTravelDays){
+    public List<AccompanyStaffSet> choreographyBusinessTravel(List<Staff> staffs, List<AccompanyStaffSet> accompanyStaffSets, int totalTravelDays){
         this.choreographyResult = new ArrayList<>(totalTravelDays);
         staffAlreadyDistributedDays = new HashMap<>();
-        fairlyDistributedDays(staffs, totalTravelDays);
+
+        fairlyDistributedDaysToStaffs(staffs, totalTravelDays);
         randomDistributeAccompanyStaffs(accompanyStaffSets);
         randomDistributeStaffs(staffs);
         return choreographyResult;
@@ -26,17 +32,22 @@ public class BusinessTravelSelector {
 
     }
 
-    private void randomDistributeAccompanyStaffs(List<AccompanyStaffSet> accompanyStaffSets, ) {
+    private void randomDistributeAccompanyStaffs(List<AccompanyStaffSet> accompanyStaffSets) {
         for(AccompanyStaffSet accompanyStaffSet : accompanyStaffSets){
             int randomDay;
             int ratio = Integer.parseInt(accompanyStaffSet.getAccompanyStaffs().get(accompanyStaffSet.getAccompanyStaffs().size()-1));
-            int accompanyDay =
+            int accompanyDay = getLessDay(accompanyStaffSet);
             for(int i=0 ; i<accompanyDay ; i++){
                 randomDay = getUndistributedDay();
                 choreographyResult.set(randomDay, accompanyStaffSet);
             }
         }
+    }
 
+    private int getLessDay(AccompanyStaffSet accompanyStaffSet) {
+        String staff1 = accompanyStaffSet.getAccompanyStaffs().get(0);
+        String staff2 = accompanyStaffSet.getAccompanyStaffs().get(1);
+        return min(staffAlreadyDistributedDays.get(staff1), staffAlreadyDistributedDays.get(staff2));
     }
 
     private int getUndistributedDay() {
@@ -47,7 +58,7 @@ public class BusinessTravelSelector {
         return randomDay;
     }
 
-    private void fairlyDistributedDays(List<Staff> staffs, int totalTravelDays) {
+    private void fairlyDistributedDaysToStaffs(List<Staff> staffs, int totalTravelDays) {
         int avgDays = totalTravelDays / staffs.size();
         int remainDays = totalTravelDays % staffs.size();
         for(Staff staff : staffs){
@@ -60,6 +71,7 @@ public class BusinessTravelSelector {
         for(int i=0 ; i<remainDays ; i++){
             int randomStaff = (int) (Math.random() * staffs.size());
             staffs.get(randomStaff).setBusinessTravelTimes(staffs.get(randomStaff).getBusinessTravelTimes() + 1);
+            staffAlreadyDistributedDays.put(staffs.get(randomStaff).getStaffName(), staffs.get(randomStaff).getBusinessTravelTimes());
         }
     }
 
