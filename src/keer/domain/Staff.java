@@ -18,7 +18,6 @@ public class Staff {
 
     public Staff(String staffName){
         this.staffName = staffName;
-
     }
 
     public String getStaffName(){

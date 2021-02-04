@@ -20,6 +20,7 @@ import keer.domain.Staff;
 import keer.repository.StaffFileLoader;
 
 import javafx.scene.input.MouseEvent;
+import keer.usecase.BusinessTravelSelector;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ public class Controller {
     public TextField ratioInput;
     public Text errorText;
     public Button deleteAccompanyBtn;
+    public Tab travelTab;
 
     private List<ComboBox<String>> accompanyComboBoxes;
     public ComboBox<String> accompanyA;
@@ -47,6 +49,8 @@ public class Controller {
 
     private StaffFileLoader staffFileLoader = new StaffFileLoader();
     private AccompanyFileLoader accompanyFileLoader = new AccompanyFileLoader();
+    private List<Staff> staffs;
+    private List<AccompanyStaffSet> accompanyStaffSets;
 
     public Controller(){
         accompanyComboBoxes = new ArrayList<>();
@@ -57,8 +61,8 @@ public class Controller {
         this.stage = stage;
         this.root = root;
 
-        List<Staff> staffs = loadStaffs(staffFileLoader);
-        List<AccompanyStaffSet> accompanyStaffSets = loadAccompanyStaffs(accompanyFileLoader);
+        staffs = loadStaffs(staffFileLoader);
+        accompanyStaffSets = loadAccompanyStaffs(accompanyFileLoader);
         List<String> accompanyTitle = accompanyFileLoader.getTitle();
 
         accompanyComboBoxes.add(accompanyA);
@@ -70,6 +74,14 @@ public class Controller {
 
         setInitWindowPresentation();
         setSizeChangedPresentation();
+    }
+
+    public void determineTravel(MouseEvent mouseEvent) throws IOException {
+        BusinessTravelSelector businessTravelSelector = new BusinessTravelSelector();
+        List<AccompanyStaffSet> result = businessTravelSelector.choreographyBusinessTravel(staffs, accompanyStaffSets, Integer.parseInt(totalTimeInput.getText()));
+        int i=0;
+        String resultFilePath = "result.xlsx";
+        businessTravelSelector.generateResultFile(resultFilePath, result);
     }
 
     private void makeTableViewColumn(List<String> accompanyTitle) {
@@ -106,7 +118,6 @@ public class Controller {
 
     private void setInitWindowPresentation() {
         Rectangle2D userScreenBounds = Screen.getPrimary().getBounds();
-        System.out.println(userScreenBounds);
         stage.setScene(new Scene(root, userScreenBounds.getMaxX() / 2.0, userScreenBounds.getMaxY() / 2.0));
         stage.centerOnScreen();
     }
@@ -131,8 +142,8 @@ public class Controller {
     }
 
     public void addAccompany() throws IOException {
-        System.out.println(!isStaffMatchDuplicated() + " " + isRatioCorrect());
-        if(!isStaffMatchDuplicated() && isRatioCorrect()){
+//        System.out.println(!isStaffMatchDuplicated() + " " + isRatioCorrect() + " " + isSomeoneRatioOverflow());
+        if(!isStaffMatchDuplicated() && isRatioCorrect() && !isSomeoneRatioOverflow()){
             AccompanyStaffSet accompanyStaffSet = new AccompanyStaffSet();
 
             accompanyStaffSet.addStaff(accompanyA.getValue());
@@ -140,10 +151,19 @@ public class Controller {
             accompanyStaffSet.addStaff(ratioInput.getText());
             accompanyTable.getItems().add(accompanyStaffSet);
             this.accompanyFileLoader.addRow(accompanyStaffSet);
+            this.accompanyStaffSets.add(accompanyStaffSet);
             errorText.setText("");
         }
         else{
-            errorText.setText("輸入形式錯誤");
+            if(!isRatioCorrect()) errorText.setText("同行機率輸入錯誤(0 < rate <= 100)");
+            else if(isStaffMatchDuplicated()) errorText.setText("同行組合已經出現過");
+            else if(isSomeoneRatioOverflow()) {
+                StringBuilder errorMessage = new StringBuilder("同行率超過100%");
+                for(String name : getRatioOverflowStaffName()){
+                    errorMessage.insert(0, name + " ");
+                }
+                errorText.setText(errorMessage.toString());
+            }
         }
     }
 
@@ -153,7 +173,6 @@ public class Controller {
             return ratioData <= 100.0 && ratioData > 0;
         }
         return false;
-
     }
 
     private boolean isStaffMatchDuplicated() {
@@ -163,7 +182,6 @@ public class Controller {
             for(ComboBox<String> comboBoxSelectedStaff : accompanyComboBoxes){
                 for(String staffName : accompanyStaffSet.getAccompanyStaffs()){
                     if(comboBoxSelectedStaff.getValue().equals(staffName)){
-
                         sameItemNum += 1;
                         break;
                     }
@@ -176,8 +194,17 @@ public class Controller {
         return false;
     }
 
-    public void determineTravel(MouseEvent mouseEvent) {
-        System.out.println("今年共出差次數 :" + totalTimeInput.getText());
+    private boolean isSomeoneRatioOverflow() {
+        double[] staffTotalRate = getStaffCurrentRatio();
+        return staffTotalRate[0] > 100.0 || staffTotalRate[1] > 100.0;
+    }
+
+    private List<String> getRatioOverflowStaffName(){
+        double[] staffTotalRate = getStaffCurrentRatio();
+        List<String> result = new ArrayList<>();
+        if(staffTotalRate[0] > 100) result.add(accompanyComboBoxes.get(0).getValue());
+        if(staffTotalRate[1] > 100) result.add(accompanyComboBoxes.get(1).getValue());
+        return result;
     }
 
     public void deleteAccompany(MouseEvent mouseEvent) throws IOException {
@@ -185,5 +212,26 @@ public class Controller {
         int selectIndex =  accompanyTable.getFocusModel().getFocusedIndex();
         accompanyTable.getItems().remove(selectedRow);
         this.accompanyFileLoader.removeRow(selectIndex + 1);
+        this.accompanyStaffSets.remove(selectIndex);
+    }
+
+    private double[] getStaffCurrentRatio(){
+        double[] staffTotalRate = {
+                Double.parseDouble(ratioInput.getText()),
+                Double.parseDouble(ratioInput.getText())
+        };
+        for(AccompanyStaffSet accompanyStaffSet : accompanyTable.getItems()){
+            for(int i=0 ; i<accompanyComboBoxes.size() ; i++){
+                int rowSize = accompanyStaffSet.getAccompanyStaffs().size();
+                List<String> rowItem = accompanyStaffSet.getAccompanyStaffs();
+                for(int j=0 ; j<rowSize-1 ; j++){
+                    if(accompanyComboBoxes.get(i).getValue().equals(rowItem.get(j))){
+                        staffTotalRate[i] += Double.parseDouble(rowItem.get(2));
+                        break;
+                    }
+                }
+            }
+        }
+        return staffTotalRate;
     }
 }

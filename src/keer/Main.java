@@ -9,13 +9,10 @@ import keer.controller.Controller;
 public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
-
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = fxmlLoader.load();
         ((Controller)fxmlLoader.getController()).initConfigs(primaryStage, root);
-
         primaryStage.setTitle("出差選擇器");
-
         primaryStage.show();
     }
 
